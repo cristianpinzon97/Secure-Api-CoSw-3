@@ -1,14 +1,14 @@
 package com.eci.cosw.springbootsecureapi.config;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.web.filter.GenericFilterBean;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SignatureException;
 
 /**
  * @author Santiago Carrillo
@@ -43,15 +43,8 @@ public class JwtFilter
 
             final String token = authHeader.substring( 7 );
 
-//            try
-//            {
-//                final Claims claims = Jwts.parser().setSigningKey( "secretkey" ).parseClaimsJws( token ).getBody();
-//                request.setAttribute( "claims", claims );
-//            }
-//            catch ( final SignatureException e )
-//            {
-//                throw new ServletException( "Invalid token" );
-//            }
+            final Claims claims = Jwts.parser().setSigningKey( "secretkey" ).parseClaimsJws( token ).getBody();
+            request.setAttribute( "claims", claims );
 
             filterChain.doFilter( servletRequest, response );
         }

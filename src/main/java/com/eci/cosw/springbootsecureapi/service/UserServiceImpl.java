@@ -20,7 +20,7 @@ public class UserServiceImpl
     private List<User> users = new ArrayList<>();
 
 
-    @Autowired
+  
     public UserServiceImpl()
     {
     }
@@ -28,7 +28,7 @@ public class UserServiceImpl
     @PostConstruct
     private void populateSampleData()
     {
-        users.add( new User( "test@mail.com", "password", "Andres", "Perez" ) );
+        users.add( new User( "test@mail.com", "password", "Andres", "Perez","https://cdn1.iconfinder.com/data/icons/crimes-and-justice/100/14-128.png" ) );
     }
 
 

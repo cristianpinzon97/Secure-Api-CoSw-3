@@ -19,17 +19,20 @@ public class User
 
     private String username;
 
+    private String image;
+
 
     public User()
     {
     }
 
-    public User( String email, String password, String firstname, String lastname )
+    public User( String email, String password, String firstname, String lastname, String image )
     {
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.image = image;
     }
 
 
@@ -93,10 +96,20 @@ public class User
         this.username = username;
     }
 
+    public String getImage()
+    {
+        return image;
+    }
+
+    public void setImage( String image )
+    {
+        this.image = image;
+    }
+
     @Override
     public String toString()
     {
-        return "User{" + "id=" + id + ", email='" + email + '\'' + ", password='" + password + '\'' + ", firstname='"
+        return "User{" + "id=" + id + ", email='" + email + '\'' + ", image='" + image + '\'' + ", password='" + password + '\'' + ", firstname='"
             + firstname + '\'' + '}';
     }
 }
