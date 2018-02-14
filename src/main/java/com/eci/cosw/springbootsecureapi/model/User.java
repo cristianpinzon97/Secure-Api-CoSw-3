@@ -13,9 +13,9 @@ public class User
 
     private String password;
 
-    private String firstname;
-
     private String lastname;
+
+    private String name;
 
     private String username;
 
@@ -26,11 +26,11 @@ public class User
     {
     }
 
-    public User( String email, String password, String firstname, String lastname, String image )
+    public User( String email, String password, String name, String lastname, String image )
     {
         this.email = email;
         this.password = password;
-        this.firstname = firstname;
+        this.name = name;
         this.lastname = lastname;
         this.image = image;
     }
@@ -66,14 +66,14 @@ public class User
         this.password = password;
     }
 
-    public String getFirstname()
+    public String getName()
     {
-        return firstname;
+        return name;
     }
 
-    public void setFirstname( String firstname )
+    public void setname( String name )
     {
-        this.firstname = firstname;
+        this.name = name;
     }
 
     public String getLastname()
@@ -109,7 +109,7 @@ public class User
     @Override
     public String toString()
     {
-        return "User{" + "id=" + id + ", email='" + email + '\'' + ", image='" + image + '\'' + ", password='" + password + '\'' + ", firstname='"
-            + firstname + '\'' + '}';
+        return "User{" + "id=" + id + ", email='" + email + '\'' + ", image='" + image + '\'' + ", password='" + password + '\'' + ", name='"
+            + name + '\'' + '}';
     }
 }

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Santiago Carrillo
@@ -26,6 +28,7 @@ public class UserController
     private UserService userService;
 
 
+    @CrossOrigin
     @RequestMapping( value = "/login", method = RequestMethod.POST )
     public Token login( @RequestBody User login )
         throws ServletException
@@ -59,6 +62,43 @@ public class UserController
             SignatureAlgorithm.HS256, "secretkey" ).compact();
 
         return new Token( jwtToken );
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET )
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
+
+    @CrossOrigin
+    @RequestMapping( value = "/ById.{id}", method = RequestMethod.GET )
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUser(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping( value = "/ByEmail.{email}", method = RequestMethod.GET )
+    public User findUserByEmail(@PathVariable String email) throws ServletException {
+        System.out.print(email);
+        User user = userService.findUserByEmail(email);
+        System.out.print(user.toString());
+        if ( user == null )
+        {
+            throw new ServletException( "User username not found." );
+        }
+        return user;
+    }
+
+    @CrossOrigin
+    @RequestMapping( value = "/ByEmailAndPassword.{email}.{password}", method = RequestMethod.GET )
+    public User findUserByEmailAndPassword(@PathVariable String email,@PathVariable String password) {
+        return userService.findUserByEmailAndPassword(email,password);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST )
+    public User createUser(@RequestBody User user ) {
+        return userService.createUser(user);
     }
 
     public class Token

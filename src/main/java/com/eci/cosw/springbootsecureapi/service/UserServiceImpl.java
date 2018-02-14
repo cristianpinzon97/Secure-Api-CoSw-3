@@ -39,27 +39,42 @@ public class UserServiceImpl
     }
 
     @Override
-    public User getUser( Long id )
-    {
-        return users.get( 0 );
+    public User getUser( Long id ) {
+        User user =null;
+        for (User u : users ){
+            if(u.getId()==id){
+                user=u;
+            }
+        }
+        return user;
     }
 
     @Override
-    public User createUser( User user )
-    {
-        return users.get( 0 );
+    public User createUser( User user ) {
+        users.add(user);
+        return user;
     }
 
     @Override
-    public User findUserByEmail( String email )
-    {
-        return users.get( 0 );
+    public User findUserByEmail( String email ) {
+        User user =null;
+        for (User u : users ){
+            if(u.getEmail().equals(email)){
+                user=u;
+            }
+        }
+        return user;
     }
 
     @Override
-    public User findUserByEmailAndPassword( String email, String password )
-    {
-        return users.get( 0 );
+    public User findUserByEmailAndPassword( String email, String password ) {
+        User user =null;
+        for (User u : users ){
+            if(u.getEmail().equals(email) && u.getPassword().equals(password)){
+                user=u;
+            }
+        }
+        return user;
     }
 
 }
